@@ -17,7 +17,7 @@ import (
 
 	"github.com/docker/docker/pkg/stdcopy"
 	"github.com/docker/docker/pkg/term"
-	"github.com/docker/docker/utils"
+	"github.com/docker/docker/pkg/jsonmessage"
 )
 
 const (
@@ -353,7 +353,7 @@ func (c *Client) stream(method, path string, in io.Reader, out io.Writer, header
 
 		// it may not make sense to put this code here, but it works for
 		// us at the moment, and I don't feel like refactoring
-		return utils.DisplayJSONMessagesStream(resp.Body, out, terminalFd, isTerminal)
+		return jsonmessage.DisplayJSONMessagesStream(resp.Body, out, terminalFd, isTerminal)
 	}
 	// otherwise plain text
 	if _, err := io.Copy(out, resp.Body); err != nil {

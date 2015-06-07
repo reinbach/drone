@@ -191,6 +191,13 @@ export DRONE_GITLAB_CLIENT=""
 export DRONE_GITLAB_SECRET=""
 export DRONE_GITLAB_SKIP_VERIFY=false
 
+# stash configuration
+export DRONE_STASH_URL="http://localhost:7990"
+export DRONE_STASH_API="ssh://localhost:7999"
+export DRONE_STASH_SECRET="Drone"
+export DRONE_STASH_PRIVATE_KEY="/stash.pem"
+export DRONE_STASH_HOOK="de.aeffle.stash.plugin.stash-http-get-post-receive-hook%3Ahttp-get-post-receive-hook"
+
 # email configuration
 export DRONE_SMTP_HOST=""
 export DRONE_SMTP_PORT=""
@@ -285,9 +292,10 @@ Customize drone.toml with the appropriate URL:port for stash (7990) and stash gi
 ```
 [stash]
 url = "http://localhost:7990"
-api = "localhost:7999"
+api = "ssh://localhost:7999"
 secret = "Drone"
 private-key = "/stash.pem
+hook = "de.aeffle.stash.plugin.stash-http-get-post-receive-hook%3Ahttp-get-post-receive-hook"
 ```
 
 ## Build Configuration
